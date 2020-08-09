@@ -3,6 +3,7 @@ package com.labforward.api.hello.controller;
 import com.labforward.api.core.exception.ResourceNotFoundException;
 import com.labforward.api.hello.domain.Greeting;
 import com.labforward.api.hello.service.HelloWorldService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +17,10 @@ public class HelloController {
 
     public static final String GREETING_NOT_FOUND = "Greeting Not Found";
 
-    private HelloWorldService helloWorldService;
+    private final HelloWorldService helloWorldService;
 
-    public HelloController(HelloWorldService helloWorldService) {
+    @Autowired
+    public HelloController(final HelloWorldService helloWorldService) {
         this.helloWorldService = helloWorldService;
     }
 
