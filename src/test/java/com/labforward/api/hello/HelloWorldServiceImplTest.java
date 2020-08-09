@@ -2,7 +2,7 @@ package com.labforward.api.hello;
 
 import com.labforward.api.core.exception.EntityValidationException;
 import com.labforward.api.hello.domain.Greeting;
-import com.labforward.api.hello.service.HelloWorldService;
+import com.labforward.api.hello.service.HelloWorldServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,20 +14,20 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class HelloWorldServiceTest {
+public class HelloWorldServiceImplTest {
 
 	@Autowired
-	private HelloWorldService helloService;
+	private HelloWorldServiceImpl helloService;
 
-	public HelloWorldServiceTest() {
+	public HelloWorldServiceImplTest() {
 	}
 
 	@Test
 	public void getDefaultGreetingIsOK() {
 		Optional<Greeting> greeting = helloService.getDefaultGreeting();
 		Assert.assertTrue(greeting.isPresent());
-		Assert.assertEquals(HelloWorldService.DEFAULT_ID, greeting.get().getId());
-		Assert.assertEquals(HelloWorldService.DEFAULT_MESSAGE, greeting.get().getMessage());
+		Assert.assertEquals(HelloWorldServiceImpl.DEFAULT_ID, greeting.get().getId());
+		Assert.assertEquals(HelloWorldServiceImpl.DEFAULT_MESSAGE, greeting.get().getMessage());
 	}
 
 	@Test(expected = EntityValidationException.class)

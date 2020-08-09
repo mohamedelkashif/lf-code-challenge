@@ -3,7 +3,7 @@ package com.labforward.api.hello;
 import com.labforward.api.common.MVCIntegrationTest;
 import com.labforward.api.core.GlobalControllerAdvice;
 import com.labforward.api.hello.domain.Greeting;
-import com.labforward.api.hello.service.HelloWorldService;
+import com.labforward.api.hello.service.HelloWorldServiceImpl;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -33,8 +33,8 @@ public class HelloControllerTest extends MVCIntegrationTest {
 	public void getHelloIsOKAndReturnsValidJSON() throws Exception {
 		mockMvc.perform(get("/hello"))
 		       .andExpect(status().isOk())
-		       .andExpect(jsonPath("$.id", is(HelloWorldService.DEFAULT_ID)))
-		       .andExpect(jsonPath("$.message", is(HelloWorldService.DEFAULT_MESSAGE)));
+		       .andExpect(jsonPath("$.id", is(HelloWorldServiceImpl.DEFAULT_ID)))
+		       .andExpect(jsonPath("$.message", is(HelloWorldServiceImpl.DEFAULT_MESSAGE)));
 	}
 
 	@Test
