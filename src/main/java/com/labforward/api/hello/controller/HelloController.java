@@ -1,7 +1,7 @@
 package com.labforward.api.hello.controller;
 
-import com.labforward.api.core.exception.ResourceNotFoundException;
 import com.labforward.api.hello.domain.Greeting;
+import com.labforward.api.hello.service.HelloWorldService;
 import com.labforward.api.hello.service.HelloWorldServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +18,11 @@ import javax.validation.Valid;
 @RequestMapping("/hello")
 public class HelloController {
 
-    public static final String GREETING_NOT_FOUND = "Greeting Not Found";
-
-    private final HelloWorldServiceImpl helloWorldServiceImpl;
+    private final HelloWorldService helloWorldService;
 
     @Autowired
-    public HelloController(final HelloWorldServiceImpl helloWorldServiceImpl) {
-        this.helloWorldServiceImpl = helloWorldServiceImpl;
+    public HelloController(final HelloWorldService helloWorldService) {
+        this.helloWorldService = helloWorldService;
     }
 
     @GetMapping
@@ -34,17 +32,16 @@ public class HelloController {
 
     @GetMapping("/{id}")
     public Greeting getHello(@PathVariable String id) {
-        return helloWorldServiceImpl.getGreeting(id)
-                .orElseThrow(() -> new ResourceNotFoundException(GREETING_NOT_FOUND));
+        return helloWorldService.getGreeting(id);
     }
 
     @PostMapping
     public Greeting createGreeting(@RequestBody Greeting request) {
-        return helloWorldServiceImpl.createGreeting(request);
+        return helloWorldService.createGreeting(request);
     }
 
     @PatchMapping("/{greetingId}")
-    public void updateGreeting(@PathVariable String greetingId, @Valid @RequestBody Greeting greetingToBeUpdated){
-        helloWorldServiceImpl.updateGreeting(greetingId, greetingToBeUpdated);
+    public void updateGreeting(@PathVariable String greetingId, @Valid @RequestBody Greeting greetingToBeUpdated) {
+        helloWorldService.updateGreeting(greetingId, greetingToBeUpdated);
     }
 }
