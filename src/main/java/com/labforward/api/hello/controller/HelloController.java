@@ -40,7 +40,7 @@ public class HelloController {
         return helloWorldService.createGreeting(request);
     }
 
-    @PatchMapping("/{greetingId}")
+    @PatchMapping
     public Greeting updateGreeting(@RequestBody Greeting greetingToBeUpdated) {
         return helloWorldService.updateGreeting(greetingToBeUpdated);
     }

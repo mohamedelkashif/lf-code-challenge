@@ -1,6 +1,7 @@
 package com.labforward.api.core.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,8 +11,9 @@ public class ValidationErrorMessage extends ApiMessage {
 
 	private List<ValidationError> validationErrors = new ArrayList<>();
 
-	public ValidationErrorMessage(String message) {
-		super(message);
+	public ValidationErrorMessage(String message, Date date) {
+
+		super(message, date);
 	}
 
 	public void addError(String field, String message) {
