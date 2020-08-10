@@ -1,29 +1,40 @@
 package com.labforward.api.core.domain;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * Base message response
  */
 public class ApiMessage {
 
-	protected String message;
+    protected String message;
 
-	protected String[] error;
+    protected String[] errors;
 
-	public ApiMessage(String message) {
-		this.message = message;
-		this.error = new String[0];
-	}
+    protected Date timestamp;
 
-	public ApiMessage(String message, String[] error) {
-		this.message = message;
-		this.error = error;
-	}
 
-	public String getMessage() {
-		return message;
-	}
+    public ApiMessage(String message) {
+        this.message = message;
+    }
 
-	public String[] getError() {
-		return error;
+    public ApiMessage(String message, Date timestamp) {
+        this.message = message;
+        this.errors = new String[0];
+        this.timestamp = timestamp;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+	public String[] getErrors() {
+		return errors;
 	}
 }
