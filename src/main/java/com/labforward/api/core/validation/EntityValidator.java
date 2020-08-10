@@ -11,7 +11,6 @@ import static com.labforward.api.constants.Messages.MESSAGE_NO_ID_MATCH;
 
 public class EntityValidator {
 
-
 	private SpringValidatorAdapter validatorAdapter;
 
 	@Autowired

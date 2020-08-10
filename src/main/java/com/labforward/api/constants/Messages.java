@@ -20,8 +20,4 @@ public final class Messages {
     public static final String MESSAGE_UNRECOGNIZED_PROPERTY = "Unrecognized property: ";
 
     public static final String MESSAGE_BAD_REQUEST = "Client error: server will not process request";
-
-
-
-
 }

@@ -63,7 +63,7 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler imple
     @ExceptionHandler(UserAgentRequiredException.class)
     @ResponseBody
     public ApiMessage handleNoUserAgent(UserAgentRequiredException ex) {
-    	return getApiErrorMessage(ex);
+        return getApiErrorMessage(ex);
     }
 
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
@@ -79,7 +79,7 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler imple
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseBody
     public ApiMessage handleNotFound(ResourceNotFoundException e) {
-    	return getApiErrorMessage(e);
+        return getApiErrorMessage(e);
     }
 
     /*

@@ -13,7 +13,6 @@ public class ApiMessage {
 
     protected Date timestamp;
 
-
     public ApiMessage(String message) {
         this.message = message;
     }
@@ -27,7 +26,6 @@ public class ApiMessage {
     public String getMessage() {
         return message;
     }
-
 
     public Date getTimestamp() {
         return timestamp;

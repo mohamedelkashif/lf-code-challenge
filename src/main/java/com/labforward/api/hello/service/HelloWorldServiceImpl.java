@@ -60,5 +60,4 @@ public class HelloWorldServiceImpl implements HelloWorldService {
         this.greetings.put(greeting.getId(), greeting);
         return greeting;
     }
-
 }

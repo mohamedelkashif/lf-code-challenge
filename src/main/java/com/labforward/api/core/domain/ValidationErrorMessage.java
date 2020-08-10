@@ -12,7 +12,6 @@ public class ValidationErrorMessage extends ApiMessage {
 	private List<ValidationError> validationErrors = new ArrayList<>();
 
 	public ValidationErrorMessage(String message, Date date) {
-
 		super(message, date);
 	}
 

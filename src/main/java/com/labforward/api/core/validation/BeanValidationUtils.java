@@ -14,8 +14,6 @@ import static com.labforward.api.constants.Messages.OBJECT_ERROR_DELIMITER;
 
 public class BeanValidationUtils {
 
-
-
     private BeanValidationUtils() {
     }
 
