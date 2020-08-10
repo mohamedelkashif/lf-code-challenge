@@ -1,11 +1,11 @@
 package com.labforward.api.core.exception;
 
+import static com.labforward.api.constants.Messages.REQUIRED_PARAM;
+
 public class BadRequestException extends RuntimeException {
 
-	public static final String MESSAGE = "A required parameter is missing";
-
 	public BadRequestException() {
-		super(MESSAGE);
+		super(REQUIRED_PARAM);
 	}
 
 	public BadRequestException(String message) {

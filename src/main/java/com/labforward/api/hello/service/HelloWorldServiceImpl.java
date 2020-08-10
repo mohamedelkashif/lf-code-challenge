@@ -10,58 +10,55 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import static com.labforward.api.constants.Messages.DEFAULT_ID;
+import static com.labforward.api.constants.Messages.DEFAULT_MESSAGE;
+import static com.labforward.api.constants.Messages.GREETING_NOT_FOUND;
+
 @Service
-public class HelloWorldServiceImpl implements HelloWorldService{
+public class HelloWorldServiceImpl implements HelloWorldService {
 
-	public static final String GREETING_NOT_FOUND = "Greeting Not Found";
+    private Map<String, Greeting> greetings;
 
-	public static String DEFAULT_ID = "default";
+    private EntityValidator entityValidator;
 
-	public static String DEFAULT_MESSAGE = "Hello World!";
+    public HelloWorldServiceImpl(EntityValidator entityValidator) {
+        this.entityValidator = entityValidator;
+        this.greetings = new HashMap<>(1);
+        save(getDefault());
+    }
 
-	private Map<String, Greeting> greetings;
+    private Greeting getDefault() {
+        return new Greeting(DEFAULT_ID, DEFAULT_MESSAGE);
+    }
 
-	private EntityValidator entityValidator;
+    @Override
+    public Greeting getGreeting(String greetingId) {
+        Greeting greeting = this.greetings.get(greetingId);
+        return Optional.ofNullable(greeting).orElseThrow(() -> new ResourceNotFoundException(GREETING_NOT_FOUND));
+    }
 
-	public HelloWorldServiceImpl(EntityValidator entityValidator) {
-		this.entityValidator = entityValidator;
+    @Override
+    public Greeting createGreeting(Greeting greeting) {
+        entityValidator.validateCreate(greeting);
+        greeting.setId(UUID.randomUUID().toString());
+        return save(greeting);
+    }
 
-		this.greetings = new HashMap<>(1);
-		save(getDefault());
-	}
+    @Override
+    public Greeting updateGreeting(Greeting greetingTobeUpdated) {
+        entityValidator.validateUpdate(greetingTobeUpdated);
+        getGreeting(greetingTobeUpdated.getId());
+        return this.save(greetingTobeUpdated);
+    }
 
-	private static Greeting getDefault() {
-		return new Greeting(DEFAULT_ID, DEFAULT_MESSAGE);
-	}
+    @Override
+    public Greeting getDefaultGreeting() {
+        return getGreeting(DEFAULT_ID);
+    }
 
-	@Override
-	public Greeting getGreeting(String greetingId) {
-		Greeting greeting = this.greetings.get(greetingId);
-		return Optional.ofNullable(greeting).orElseThrow(() -> new ResourceNotFoundException(GREETING_NOT_FOUND));
-	}
-
-	@Override
-	public Greeting createGreeting(Greeting greeting) {
-		entityValidator.validateCreate(greeting);
-		greeting.setId(UUID.randomUUID().toString());
-		return save(greeting);
-	}
-
-	@Override
-	public Greeting updateGreeting(Greeting greetingTobeUpdated) {
-		entityValidator.validateUpdate(greetingTobeUpdated);
-		getGreeting(greetingTobeUpdated.getId());
-		return this.save(greetingTobeUpdated);
-	}
-
-	@Override
-	public Greeting getDefaultGreeting() {
-		return getGreeting(DEFAULT_ID);
-	}
-
-	private Greeting save(Greeting greeting) {
-		this.greetings.put(greeting.getId(), greeting);
-		return greeting;
-	}
+    private Greeting save(Greeting greeting) {
+        this.greetings.put(greeting.getId(), greeting);
+        return greeting;
+    }
 
 }

@@ -10,10 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import static com.labforward.api.constants.Messages.OBJECT_ERROR_DELIMITER;
+
 public class BeanValidationUtils {
 
 
-    public static final String OBJECT_ERROR_DELIMITER = "#";
 
     private BeanValidationUtils() {
     }

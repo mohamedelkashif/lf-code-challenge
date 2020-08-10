@@ -2,7 +2,6 @@ package com.labforward.api.hello.controller;
 
 import com.labforward.api.hello.domain.Greeting;
 import com.labforward.api.hello.service.HelloWorldService;
-import com.labforward.api.hello.service.HelloWorldServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import static com.labforward.api.constants.Messages.DEFAULT_ID;
 
 @RestController
 @RequestMapping("/hello")
@@ -27,7 +26,7 @@ public class HelloController {
 
     @GetMapping
     public Greeting helloWorld() {
-        return getHello(HelloWorldServiceImpl.DEFAULT_ID);
+        return getHello(DEFAULT_ID);
     }
 
     @GetMapping("/{id}")

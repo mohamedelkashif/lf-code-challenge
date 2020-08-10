@@ -1,10 +1,10 @@
 package com.labforward.api.core.exception;
 
+import static com.labforward.api.constants.Messages.USER_AGENT_REQUIRED;
+
 public class UserAgentRequiredException extends RuntimeException {
 
-	public static final String MESSAGE = "User-Agent header is required";
-
 	public UserAgentRequiredException() {
-		super(MESSAGE);
+		super(USER_AGENT_REQUIRED);
 	}
 }

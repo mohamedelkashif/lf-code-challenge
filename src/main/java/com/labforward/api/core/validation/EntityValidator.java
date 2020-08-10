@@ -7,9 +7,10 @@ import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 
+import static com.labforward.api.constants.Messages.MESSAGE_NO_ID_MATCH;
+
 public class EntityValidator {
 
-	public static final String MESSAGE_NO_ID_MATCH = "id provided does not match resource";
 
 	private SpringValidatorAdapter validatorAdapter;
 

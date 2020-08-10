@@ -1,7 +1,6 @@
 package com.labforward.api.core.domain;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Base message response
