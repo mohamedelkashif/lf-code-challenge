@@ -48,10 +48,10 @@ public class HelloWorldServiceImpl implements HelloWorldService{
 	}
 
 	@Override
-	public void updateGreeting(String greetingId, Greeting greetingTobeUpdated) {
+	public Greeting updateGreeting(Greeting greetingTobeUpdated) {
 		entityValidator.validateUpdate(greetingTobeUpdated);
-		getGreeting(greetingId);
-		save(greetingTobeUpdated);
+		getGreeting(greetingTobeUpdated.getId());
+		return this.save(greetingTobeUpdated);
 	}
 
 	@Override
@@ -61,7 +61,6 @@ public class HelloWorldServiceImpl implements HelloWorldService{
 
 	private Greeting save(Greeting greeting) {
 		this.greetings.put(greeting.getId(), greeting);
-
 		return greeting;
 	}
 

@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public class NoContentResponse extends ResponseEntity {
 
-	public NoContentResponse() {
-		super(HttpStatus.NO_CONTENT);
-	}
+    public NoContentResponse() {
+        super(HttpStatus.NO_CONTENT);
+    }
 }

@@ -37,6 +37,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -285,6 +287,6 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler imple
 	}
 
 	private ApiMessage getApiErrorMessage(Exception ex) {
-		return new ApiMessage(ex.getMessage());
+		return new ApiMessage(ex.getMessage(), new Date());
 	}
 }

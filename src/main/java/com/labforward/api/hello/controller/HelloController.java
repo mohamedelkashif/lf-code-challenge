@@ -41,7 +41,7 @@ public class HelloController {
     }
 
     @PatchMapping("/{greetingId}")
-    public void updateGreeting(@PathVariable String greetingId, @Valid @RequestBody Greeting greetingToBeUpdated) {
-        helloWorldService.updateGreeting(greetingId, greetingToBeUpdated);
+    public Greeting updateGreeting(@RequestBody Greeting greetingToBeUpdated) {
+        return helloWorldService.updateGreeting(greetingToBeUpdated);
     }
 }

@@ -7,7 +7,7 @@ public interface HelloWorldService {
 
     Greeting createGreeting(Greeting greeting);
 
-    void updateGreeting(String greetingId, Greeting greeting);
+    Greeting updateGreeting(Greeting greeting);
 
     Greeting getDefaultGreeting();
 }
