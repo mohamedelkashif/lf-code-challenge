@@ -47,8 +47,7 @@ public class EntityValidator {
     }
 
     protected void validate(Object target, Object... groups) throws EntityValidationException {
-        Preconditions.checkNotNull(target);
-
+        Preconditions.checkArgument(target != null);
 
         BeanPropertyBindingResult result = new BeanPropertyBindingResult(target, target.getClass().getName());
         validatorAdapter.validate(target, result, groups);

@@ -24,7 +24,7 @@ public class HelloWorldServiceImpl implements HelloWorldService {
     public HelloWorldServiceImpl(EntityValidator entityValidator) {
         this.entityValidator = entityValidator;
         this.greetings = new HashMap<>(1);
-        save(getDefault());
+        this.save(getDefault());
     }
 
     private Greeting getDefault() {
@@ -40,8 +40,10 @@ public class HelloWorldServiceImpl implements HelloWorldService {
     @Override
     public Greeting createGreeting(Greeting greeting) {
         entityValidator.validateCreate(greeting);
-        greeting.setId(UUID.randomUUID().toString());
-        return save(greeting);
+        if(greeting.getId() == null){
+            greeting.setId(UUID.randomUUID().toString());
+        }
+        return this.save(greeting);
     }
 
     @Override

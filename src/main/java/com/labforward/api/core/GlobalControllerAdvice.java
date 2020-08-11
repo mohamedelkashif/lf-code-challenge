@@ -1,5 +1,6 @@
 package com.labforward.api.core;
 
+import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.google.common.base.Throwables;
 import com.labforward.api.core.creation.EntityCreatedResponse;
@@ -55,7 +56,6 @@ import static com.labforward.api.constants.Messages.OBJECT_ERROR_DELIMITER;
  * the appropriate HTTP Status codes and user-friendly messages
  */
 @ControllerAdvice
-@RestController
 public class GlobalControllerAdvice extends ResponseEntityExceptionHandler implements ResponseBodyAdvice<Object> {
 
     private static final ApiMessage GENERIC_NOT_FOUND_MESSAGE = new ApiMessage("Entity not found.");
@@ -150,6 +150,12 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler imple
     @ExceptionHandler(Exception.class)
     public Object genericExceptionHandler(Exception e) {
         return getApiErrorMessage(e);
+    }
+
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public final ResponseEntity<Object> handleInvalidDefinitionException(IllegalArgumentException ex) {
+        return new ResponseEntity<>(getApiErrorMessage(ex), HttpStatus.BAD_REQUEST);
     }
 
     @Override
