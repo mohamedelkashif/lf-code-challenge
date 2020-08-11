@@ -86,7 +86,7 @@ The available end-point is documented by swagger through this link
 * The project is deployed on [Amazon web services](https://aws.amazon.com/) [using Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) ![AWS deployment](/docs/AWS-deployment.png).
 * AWS endpoint 
 ```
-http://addresslineanalyzer-env.eba-rpnkjgva.us-east-1.elasticbeanstalk.com/api/v1/address
+http://labforwardhelloworld-env-1.eba-2pdttwmw.us-east-2.elasticbeanstalk.com/hello
 ```
 
 ## Author
