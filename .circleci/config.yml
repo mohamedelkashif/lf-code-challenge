@@ -13,4 +13,9 @@ jobs:
     steps:
       - checkout
 
-      — run: ./gradlew build -x test
+      - run: ./gradlew build
+
+workflows:
+  cd-pipeline-workflow:
+    jobs:
+      - build
