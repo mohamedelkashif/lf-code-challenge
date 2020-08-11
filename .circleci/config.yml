@@ -1,11 +1,16 @@
-version: 2
+efaults: &defaults
+  working_directory: ~/lf-code-challenge
+  docker:
+    — image: circleci/openjdk:8-jdk-stretch
+
+version: 2.1
+orbs:
+  gradle: bizzabo/gradle@1.1.0
 jobs:
   build:
+    <<: *defaults
 
-  docker: # run the steps with Docker
-  — image: circleci/openjdk:8-jdk-stretch # …with this image as the primary container; this is where all `steps` will run
+    steps:
+      - checkout
 
-  steps: # a collection of executable commands
-    - checkout
-
-    — run: ./gradlew build -x test
+      — run: ./gradlew build -x test
