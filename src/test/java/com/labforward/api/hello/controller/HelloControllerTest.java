@@ -16,7 +16,8 @@ import java.util.UUID;
 
 import static com.labforward.api.constants.Messages.DEFAULT_ID;
 import static com.labforward.api.constants.Messages.DEFAULT_MESSAGE;
-import static com.labforward.api.constants.Messages.UNPROCESSEABLE_ENTIIIY;
+import static com.labforward.api.constants.Messages.UNPROCESSABLE_ENTITY;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
@@ -28,6 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,7 +40,7 @@ public class HelloControllerTest extends MVCIntegrationTest {
     private static final String HELLO_LUKE = "Hello Luke";
 
     @Test
-    public void getHelloIsOKAndReturnsValidJSON() throws Exception {
+    public void getHelloShouldReturnOKAndReturnsValidJSON() throws Exception {
         mockMvc.perform(get(RESOURCE_URL))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(DEFAULT_ID)))
@@ -60,7 +62,7 @@ public class HelloControllerTest extends MVCIntegrationTest {
         final String body = "{ \"tacos\":\"value\" }}";
         mockMvc.perform(post(RESOURCE_URL).content(body).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnprocessableEntity())
-                .andExpect(jsonPath("$.message", containsString(UNPROCESSEABLE_ENTIIIY)));
+                .andExpect(jsonPath("$.message", containsString(UNPROCESSABLE_ENTITY)));
     }
 
     @Test
@@ -87,26 +89,24 @@ public class HelloControllerTest extends MVCIntegrationTest {
     }
 
     @Test
-    public void updateShouldReturnOkWhenRequiredGreetingProvided() throws Exception {
-        String id = UUID.randomUUID().toString();
+    public void updateShouldReturnOkWhenValidGreetingProvided() throws Exception {
+        final String id = UUID.randomUUID().toString();
         Greeting greeting = new Greeting(id, HELLO_LUKE);
-        Greeting updatedGreeting = new Greeting(id, "testing");
+        Greeting greetingToBeUpdated = new Greeting(id, "testing");
 
-        final String jsonStringBody = getGreetingBody(greeting);
-        final String jsonStringBodyToBeSent = getGreetingBody(updatedGreeting);
+        final String greetingBody = getGreetingBody(greeting);
+        final String toBeUpdatedGreetingBody = getGreetingBody(greetingToBeUpdated);
 
-        mockMvc.perform(post(RESOURCE_URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonStringBody))
+        mockMvc.perform(post(RESOURCE_URL).contentType(MediaType.APPLICATION_JSON)
+                .content(greetingBody))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message", is(greeting.getMessage())));
-
-
-        mockMvc.perform(patch(RESOURCE_URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonStringBodyToBeSent))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message", is(updatedGreeting.getMessage())));
+                .andExpect(jsonPath("$.message", is(greeting.getMessage()))).
+                andDo(
+                        result -> mockMvc.perform(patch(RESOURCE_URL)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(toBeUpdatedGreetingBody)).andExpect(status().isOk())
+                                .andExpect(jsonPath("$.id", equalTo(greetingToBeUpdated.getId())))
+                );
     }
 
     @Test
@@ -141,7 +141,7 @@ public class HelloControllerTest extends MVCIntegrationTest {
                 .content(body)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnprocessableEntity())
-                .andExpect(jsonPath("$.message", containsString(UNPROCESSEABLE_ENTIIIY)));
+                .andExpect(jsonPath("$.message", containsString(UNPROCESSABLE_ENTITY)));
     }
 
     @Test
