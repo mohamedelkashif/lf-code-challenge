@@ -4,8 +4,6 @@ efaults: &defaults
     — image: circleci/openjdk:8-jdk
 
 version: 2.1
-orbs:
-  gradle: bizzabo/gradle@1.1.0
 jobs:
   build:
     <<: *defaults
