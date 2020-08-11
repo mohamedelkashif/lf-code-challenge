@@ -14,8 +14,3 @@ jobs:
       - checkout
 
       - run: ./gradlew build
-
-workflows:
-  cd-pipeline-workflow:
-    jobs:
-      - build
