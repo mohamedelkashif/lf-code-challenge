@@ -1,7 +1,7 @@
 # Lab-forward Code Challenge for Backend Engineer Candidate
 
 
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs/tree/teesloane-patch-5.svg?style=svg)](https://circleci.com/gh/mohamedelkashif/addressline-analyzer)  [![codecov](https://codecov.io/gh/mohamedelkashif/addressline-analyzer/branch/master/graph/badge.svg)](https://codecov.io/gh/mohamedelkashif/addressline-analyzer) 
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs/tree/teesloane-patch-5.svg?style=svg)](https://circleci.com/gh/mohamedelkashif/lf-code-challenge)  [![codecov](https://codecov.io/gh/mohamedelkashif/addressline-analyzer/branch/master/graph/badge.svg)](https://codecov.io/gh/mohamedelkashif/addressline-analyzer) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
