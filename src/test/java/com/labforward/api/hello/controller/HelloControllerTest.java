@@ -1,4 +1,4 @@
-package com.labforward.api.hello;
+package com.labforward.api.hello.controller;
 
 import com.labforward.api.common.MVCIntegrationTest;
 import com.labforward.api.hello.domain.Greeting;
@@ -11,9 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.labforward.api.constants.Messages.BAD_REQUEST;
 import static com.labforward.api.constants.Messages.DEFAULT_ID;
 import static com.labforward.api.constants.Messages.DEFAULT_MESSAGE;
-import static com.labforward.api.constants.Messages.MESSAGE_UNRECOGNIZED_PROPERTY;
+import static com.labforward.api.constants.Messages.UNPROCESSEABLE_ENTIIIY;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
@@ -28,20 +29,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class HelloControllerTest extends MVCIntegrationTest {
 
+    private static final String RESOURCE_URL = "/hello";
+
     private static final String HELLO_LUKE = "Hello Luke";
 
     @Test
     public void getHelloIsOKAndReturnsValidJSON() throws Exception {
-        mockMvc.perform(get("/hello"))
+        mockMvc.perform(get(RESOURCE_URL))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(DEFAULT_ID)))
                 .andExpect(jsonPath("$.message", is(DEFAULT_MESSAGE)));
     }
 
     @Test
-    public void returnsBadRequestWhenMessageMissing() throws Exception {
+    public void shouldReturnUnprocessedEntityWhenMessageMissing() throws Exception {
         String body = "{}";
-        mockMvc.perform(post("/hello").content(body)
+        mockMvc.perform(post(RESOURCE_URL).content(body)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(jsonPath("$.validationErrors", hasSize(1)))
@@ -49,19 +52,19 @@ public class HelloControllerTest extends MVCIntegrationTest {
     }
 
     @Test
-    public void returnsBadRequestWhenUnexpectedAttributeProvided() throws Exception {
-        String body = "{ \"tacos\":\"value\" }}";
-        mockMvc.perform(post("/hello").content(body).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", containsString(MESSAGE_UNRECOGNIZED_PROPERTY)));
+    public void shouldReturnsUnprocessedEntityWhenUnexpectedAttributeProvided() throws Exception {
+        final String body = "{ \"tacos\":\"value\" }}";
+        mockMvc.perform(post(RESOURCE_URL).content(body).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(jsonPath("$.message", containsString(UNPROCESSEABLE_ENTIIIY)));
     }
 
     @Test
-    public void returnsBadRequestWhenMessageEmptyString() throws Exception {
+    public void shouldReturnsUnprocessedEntityWhenMessageEmptyString() throws Exception {
         Greeting emptyMessage = new Greeting("");
         final String body = getGreetingBody(emptyMessage);
 
-        mockMvc.perform(post("/hello").content(body)
+        mockMvc.perform(post(RESOURCE_URL).content(body)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(jsonPath("$.validationErrors", hasSize(1)))
@@ -69,11 +72,11 @@ public class HelloControllerTest extends MVCIntegrationTest {
     }
 
     @Test
-    public void createOKWhenRequiredGreetingProvided() throws Exception {
+    public void shouldReturnOkWhenRequiredGreetingProvided() throws Exception {
         Greeting hello = new Greeting(HELLO_LUKE);
         final String body = getGreetingBody(hello);
 
-        mockMvc.perform(post("/hello").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post(RESOURCE_URL).contentType(MediaType.APPLICATION_JSON)
                 .content(body))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message", is(hello.getMessage())));

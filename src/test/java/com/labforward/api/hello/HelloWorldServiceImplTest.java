@@ -2,6 +2,7 @@ package com.labforward.api.hello;
 
 import com.labforward.api.core.exception.EntityValidationException;
 import com.labforward.api.hello.domain.Greeting;
+import com.labforward.api.hello.service.HelloWorldService;
 import com.labforward.api.hello.service.HelloWorldServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,22 +13,27 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
+import static com.labforward.api.constants.Messages.DEFAULT_ID;
+import static com.labforward.api.constants.Messages.DEFAULT_MESSAGE;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class HelloWorldServiceImplTest {
 
 	@Autowired
-	private HelloWorldServiceImpl helloService;
+	private HelloWorldService helloService;
 
 	public HelloWorldServiceImplTest() {
 	}
 
 	@Test
 	public void getDefaultGreetingIsOK() {
-		Optional<Greeting> greeting = helloService.getDefaultGreeting();
-		Assert.assertTrue(greeting.isPresent());
-		Assert.assertEquals(HelloWorldServiceImpl.DEFAULT_ID, greeting.get().getId());
-		Assert.assertEquals(HelloWorldServiceImpl.DEFAULT_MESSAGE, greeting.get().getMessage());
+		Greeting greeting = helloService.getDefaultGreeting();
+		Assert.assertThat(greeting, is(notNullValue()));
+		Assert.assertEquals(DEFAULT_ID, greeting.getId());
+		Assert.assertEquals(DEFAULT_MESSAGE, greeting.getMessage());
 	}
 
 	@Test(expected = EntityValidationException.class)

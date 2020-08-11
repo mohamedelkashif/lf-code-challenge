@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -54,6 +55,7 @@ import static com.labforward.api.constants.Messages.OBJECT_ERROR_DELIMITER;
  * the appropriate HTTP Status codes and user-friendly messages
  */
 @ControllerAdvice
+@RestController
 public class GlobalControllerAdvice extends ResponseEntityExceptionHandler implements ResponseBodyAdvice<Object> {
 
     private static final ApiMessage GENERIC_NOT_FOUND_MESSAGE = new ApiMessage("Entity not found.");
