@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+
+  docker: # run the steps with Docker
+  — image: circleci/openjdk:8-jdk-stretch # …with this image as the primary container; this is where all `steps` will run
+
+  steps: # a collection of executable commands
+  — checkout
+  — run: ./gradlew build -x test
