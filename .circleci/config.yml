@@ -1,7 +1,7 @@
 efaults: &defaults
   working_directory: ~/lf-code-challenge
   docker:
-    — image: circleci/openjdk:8-jdk-stretch
+    — image: circleci/openjdk:8-jdk
 
 version: 2.1
 orbs:
