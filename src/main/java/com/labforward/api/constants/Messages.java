@@ -11,6 +11,8 @@ public final class Messages {
 
     public static final String BAD_REQUEST = "Bad Request";
 
+    public static final String UNPROCESSEABLE_ENTIIIY = "Unexpected or missing attribute provided";
+
     public static final String USER_AGENT_REQUIRED = "User-Agent header is required";
 
     public static final String OBJECT_ERROR_DELIMITER = "#";
