@@ -6,7 +6,6 @@ efaults: &defaults
 version: 2.1
 jobs:
   build:
-    <<: *defaults
 
     steps:
       - checkout
