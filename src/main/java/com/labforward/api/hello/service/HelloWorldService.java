@@ -10,4 +10,6 @@ public interface HelloWorldService {
     Greeting updateGreeting(Greeting greeting);
 
     Greeting getDefaultGreeting();
+
+    void deleteGreeting(String greetingId);
 }

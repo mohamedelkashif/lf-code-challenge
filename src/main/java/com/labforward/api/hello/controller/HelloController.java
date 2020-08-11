@@ -2,7 +2,9 @@ package com.labforward.api.hello.controller;
 
 import com.labforward.api.hello.domain.Greeting;
 import com.labforward.api.hello.service.HelloWorldService;
+import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,5 +46,10 @@ public class HelloController {
     @PatchMapping
     public Greeting updateGreeting(@RequestBody Greeting greetingToBeUpdated) {
         return helloWorldService.updateGreeting(greetingToBeUpdated);
+    }
+
+    @DeleteMapping("/{greetingId}")
+    public void deleteCar(@PathVariable String greetingId) {
+        helloWorldService.deleteGreeting(greetingId);
     }
 }

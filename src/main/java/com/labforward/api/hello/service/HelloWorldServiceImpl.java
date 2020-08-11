@@ -58,6 +58,12 @@ public class HelloWorldServiceImpl implements HelloWorldService {
         return getGreeting(DEFAULT_ID);
     }
 
+    @Override
+    public void deleteGreeting(String greetingId) {
+       Greeting greetingToBeDeleted = getGreeting(greetingId);
+       this.greetings.remove(greetingToBeDeleted.getId());
+    }
+
     private Greeting save(Greeting greeting) {
         this.greetings.put(greeting.getId(), greeting);
         return greeting;
