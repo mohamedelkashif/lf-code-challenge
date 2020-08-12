@@ -58,7 +58,7 @@ docker pull mohamedmkashif/labforward-helloworld:latest`
 Run the pulled image throught the following command `docker run -p 8080:8080 -t mohamedmkashif/labforward-helloworld`
 
 ## Usage & available end-points
-There are four end-points available in this project, one for the main POST request and the other is for health check
+There are four end-points available in this project
 
 | Method        | Endpoint              | Body            |
 | ------------- |:---------------------:| --------------- |   
@@ -66,7 +66,7 @@ There are four end-points available in this project, one for the main POST reque
 | GET           | localhost:8080/hello  | ID              |
 | POST          | localhost:8080/hello  | message         |
 | PATCH         | localhost:8080/hello  | Greeting object |
-
+| DELETE        | localhost:8080/hello  | ID              |
 
 ```
 AWS: http://labforwardhelloworld-env-1.eba-2pdttwmw.us-east-2.elasticbeanstalk.com/hello
