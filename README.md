@@ -58,7 +58,7 @@ docker pull mohamedmkashif/labforward-helloworld:latest`
 Run the pulled image throught the following command `docker run -p 8080:8080 -t mohamedmkashif/labforward-helloworld`
 
 ## Usage & available end-points
-There are four end-points available in this project
+There are five end-points available in this project
 
 | Method        | Endpoint              | Body            |
 | ------------- |:---------------------:| --------------- |   
