@@ -1,7 +1,7 @@
 # Lab-forward Code Challenge for Backend Engineer Candidate
 
 
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/mohamedelkashif/addressline-analyzer)  [![codecov](https://codecov.io/gh/mohamedelkashif/lf-code-challenge/branch/master/graph/badge.svg)](https://codecov.io/gh/mohamedelkashif/lf-code-challenge/) 
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/mohamedelkashif/lf-code-challenge)  [![codecov](https://codecov.io/gh/mohamedelkashif/lf-code-challenge/branch/master/graph/badge.svg)](https://codecov.io/gh/mohamedelkashif/lf-code-challenge/) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -11,18 +11,21 @@
 3. The project is attached to [circleci](https://circleci.com/) as CI/CD and [codecov](https://codecov.io/) so every time I make a push to the Git repo the project is built and tests are built then send the code covergae report to [codecov](https://codecov.io/)
 4. You can view [circleci](https://circleci.com/) and [codecov](https://codecov.io/) coverage report through the badges above.
 
+
 ## Definition of done
 1. Implement the required update endpoint.
 2. Add required test cases for for the update endpoint and for the service.
-3. Add delete endpoint to the application.
-4. Refactor the existing code by adding some classes and remove some line of code to make the code dry.
-5. Add a health check endpoint
-6. Add Swagger UI as part of UI or as a documentation.
-7. Add Dockerfile to the project.
-8. Application docker image is pushed to [DockerHun](https://hub.docker.com/) so you can pull the image directly and use it.
-9. Implement [circleci](https://circleci.com/) pipeline in case of automatic deployment.
-10. Run [codecov](https://codecov.io/) as coverage report.
-11. Deploy the application to [Amazon web services](https://aws.amazon.com/) using ElasticBeanStalk service.
+3. You will notice from the above badge that test coverage is 44% but this is because the core directory which contains validators and exception is not tested besides the Greeting entity it self is not tested as well.
+4. The whole controller and service function is tested besides some integration tests.
+5. Add delete endpoint to the application.
+6. Refactor the existing code by adding some classes and remove some line of code to make the code dry.
+7. Add a health check endpoint
+8. Add Swagger UI as part of UI or as a documentation.
+9. Add Dockerfile to the project.
+10. Application docker image is pushed to [DockerHun](https://hub.docker.com/) so you can pull the image directly and use it.
+11. Implement [circleci](https://circleci.com/) pipeline in case of automatic deployment.
+12. Run [codecov](https://codecov.io/) as coverage report.
+13. Deploy the application to [Amazon web services](https://aws.amazon.com/) using ElasticBeanStalk service.
 
 
 ## Installation and setup
@@ -66,7 +69,7 @@ There are four end-points available in this project, one for the main POST reque
 
 
 ```
-AWS: http://addresslineanalyzer-env.eba-rpnkjgva.us-east-1.elasticbeanstalk.com/api/v1/address
+AWS: http://labforwardhelloworld-env-1.eba-2pdttwmw.us-east-2.elasticbeanstalk.com/hello
 ```
 
 
